@@ -1,0 +1,41 @@
+{% include'header.html' %}
+{% include'nav.html' %}
+
+
+  <div class="container top-div">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <h3><b>Edit Thread</b></h3>
+      <form class="form-horizontal" action="{{ url_for('editthread') }}" method="post">
+        <fieldset>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <input type="text" class="form-control" placeholder="Thread Title" value="{{thread['title']}}" id="postTitle" name="postTitle">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <textarea class="form-control text-justify" rows="20" placeholder="Thread Content" id="postContent" name="postContent">{{thread['content']}}
+              </textarea>
+              <input type="hidden" class="form-control" name="threadId" value="{{thread['threadId']}}">
+            </div>
+          </div>
+          <div class="row btn-right pull-right">
+            <button type="submit" class="btn btn-success btn-small">
+              Update
+            </button>
+            <a href="{{url_for('thread', name = thread['threadId'])}}" class="btn btn-danger btn-small">
+              Cancel
+            </a>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+
+    });  
+  </script>
+</body>
+</html>

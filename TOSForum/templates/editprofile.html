@@ -1,0 +1,61 @@
+{% include'header.html' %}
+{% include'nav.html' %}
+
+  <div class="container mt5">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <div class="well">
+        <div class="row">
+          <h1 class="text-center">
+            <a href="signin.html">
+              <small>Edit Profile</small>
+            </a>
+          </h1>
+        </div>
+        <div class="row mt2">
+          <form class="form-horizontal" action="{{ url_for('edituserr') }}" method="post" enctype="multipart/form-data">
+            <fieldset>
+              <div class="form-group">  
+                <div class="input-group col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                  <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+                  <input type="text" class="form-control" placeholder="Email" id="postEmail" name="postEmail" value="{{user['email']}}">
+                  <input type="hidden" class="form-control" name="userId" value="{{user['userId']}}">
+                </div>
+              </div>
+              <div class="form-group">  
+                <div class="input-group col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                  <span class="input-group-addon glyphicon glyphicon-user"></span>
+                  <input type="text" class="form-control" placeholder="Username" id="postUsername" name="postUsername" value="{{user['username']}}">
+                </div>
+              </div>
+              <div class="form-group">  
+                <div class="input-group col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                  <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                  <input type="password" class="form-control" placeholder="Password" id="postPassword" name="postPassword">
+                </div>
+              </div>
+              <div class="form-group">  
+                <div class="input-group col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                  <span class="input-group-addon glyphicon glyphicon-picture"></span>
+                  <input type="file" class="form-control" name="file">
+                </div>
+              </div>
+              <div class="form-group">  
+                <div class="col-xs-6 col-xs-offset-6">
+                  <a href="{{url_for('profile')}}" class="btn btn-primary btn-small">Back</a>
+                  <button type="submit" class="btn btn-success btn-small">Update</button>
+                </div>  
+              </div>              
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+
+    });  
+  </script>
+</body>
+</html>

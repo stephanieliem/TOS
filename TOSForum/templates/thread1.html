@@ -1,0 +1,148 @@
+{% include'header.html' %}
+{% include'nav.html' %}
+
+
+
+  <div class="container top-div">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <div class="panel panel-default thread">
+        <div class="panel-body">
+          <h3 class="thread-title">
+            {{thread[1]}}
+          </h3>
+          <pre class="text-justify" style="border-radius:0; border:0;background-color:transparent; color:black; padding:0;display:block; white-space: pre-wrap; font-family: 'Lato','Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 15px; line-height: 1.42857143; word-break:normal;">{{thread[2]}}</pre>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-xs-12">
+              <img src="/static/images/{{thread[10]}}" class="thread-author-img img-circle">  
+              {{thread[6]}}
+              <small>| {{date}}</small>
+              {% if userId == thread[5]%}
+              <div class="row btn-right pull-right">
+                <a href="{{url_for('goeditthread', name=thread[0])}}" class="btn btn-success btn-small">
+                  Edit
+                </a>
+                <a href="{{url_for('deletethread1', name=thread[0])}}" class="btn btn-danger btn-small">
+                  Delete
+                </a>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <h4><b>Post a Comment</b></h4>
+      <form class="form-horizontal" action="{{url_for('addcomment')}}" method="POST">
+        <fieldset>
+          <div class="form-group">
+            <div class="col-xs-12">
+              <textarea class="form-control" rows="3" placeholder="Comment" id="postComment" name="postComment"></textarea>
+              <input type="hidden" class="form-control" name="threadId" value='{{thread[0]}}'>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <button type="submit" class="btn btn-right pull-right btn-success btn-small">Post Comment</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+    {% for comment in comments %}
+      <div class="panel panel-default">
+      <form class="form-horizontal" action="{{url_for('editcomment')}}" method="post">
+        <div class="panel-body">
+          <div>
+            <img src="/static/images/{{comment[10]}}" class="thread-author-img img-circle">  
+            <b>{{comment[6]}}</b>
+            <small class="pull-right notif-time">
+              {{comment[2]}}
+            </small>
+          </div>
+          <div class="col-xs-offset-1"><pre style="display:inline;border-radius:0; border:0;background-color:transparent; color:black; padding:0; white-space: pre-wrap; font-family: 'Lato','Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 15px; line-height: 1.42857143; word-break:normal;" id="old{{comment[0]}}">{{comment[1]}}</pre><span style="display:none;" id="neww{{comment[0]}}"><textarea class="form-control" rows="3" placeholder="Comment" name="postComment">{{comment[1]}}</textarea></span>
+          </div>
+          <input type="hidden" class="form-control" name="commentId" value='{{comment[0]}}'>
+          <input type="hidden" class="form-control" name="threadId" value='{{thread[0]}}'>
+          {% if userId == comment[5]%}
+          <div class="row mt1 btn-right pull-right">
+            <a class="btn btn-success btn-small" id="edit{{comment[0]}}" onclick="edit(old{{comment[0]}}, neww{{comment[0]}}, edit{{comment[0]}}, update{{comment[0]}}, deletee{{comment[0]}}, cancel{{comment[0]}})">
+              Edit
+            </a>
+            <button type="submit" class="btn btn-success btn-small" style="display:none;" id="update{{comment[0]}}">
+            Update
+            </button>
+            <a href="{{url_for('deletecomment', name=comment[0], tid=thread[0])}}" id="deletee{{comment[0]}}" class="btn btn-danger btn-small">
+              Delete
+            </a>
+            <button type="button" class="btn btn-danger btn-small" id="cancel{{comment[0]}}" style="display:none;" onclick="edit(old{{comment[0]}}, neww{{comment[0]}}, edit{{comment[0]}}, update{{comment[0]}}, deletee{{comment[0]}}, cancel{{comment[0]}})">
+            Cancel
+            </button>
+          </div>
+          {% elif userId == thread[5]%}
+          <div class="row mt1 btn-right pull-right">
+            <a href="{{url_for('deletecomment', name=comment[0], tid=thread[0])}}" class="btn btn-danger btn-small">
+              Delete
+            </a>
+          </div>
+          {% endif %}
+        </div>
+        </form>
+      </div>
+    {% endfor %} 
+
+     <!--  <div class="panel panel-default">
+        <div class="panel-body">
+          <div>
+            <img src="../static/images/albert.png" class="thread-author-img img-circle">  
+            <b>albertpratomo</b>
+            <small class="pull-right notif-time">
+              June 17 2017 | 18.29
+            </small>
+          </div>
+          <div class="col-xs-offset-1">Terima kasih postingannya. Admin baik sekali mau memasukkan tulisan ini ke sini.
+          </div>
+          <div class="row mt1 btn-right pull-right">
+            <a class="btn btn-success btn-small">
+              Edit
+            </a>
+            <a class="btn btn-danger btn-small">
+              Delete
+            </a>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+
+    });
+    function edit(comment1, comment2, comment3, comment4, comment5, comment6){
+      if( $(comment1).css('display') == 'inline' ) {
+         $(comment1).css('display','none');
+         $(comment2).css('display','inline');
+         $(comment3).hide();
+         $(comment4).show();
+         $(comment5).css('display','none');
+         $(comment6).css('display','inline');
+      } else {
+         $(comment1).css('display','inline');
+         $(comment2).css('display','none');
+         $(comment3).show();
+         $(comment4).hide();
+         $(comment5).css('display','inline');
+         $(comment6).css('display','none');
+      }
+    }  
+  </script>
+</body>
+</html>

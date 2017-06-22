@@ -1,0 +1,55 @@
+/*GENERAL*/
+.mt1{
+	margin-top: 0.6em;
+}
+.mt2{
+	margin-top: 2em;
+}
+.mt5{
+	margin-top: 5em;
+}
+.mt7{
+	margin-top: 7em;
+}
+/*THREAD*/
+.thread-title{
+	margin: 0 0 20px 0;
+	font-weight: bold;
+}
+img.thread-author-img{
+	height: 30px;
+	width: 30px;
+	margin-right: 8px; 
+}
+.btn-small{
+	font-size: 13px;
+	padding: 5px 8px;
+}
+.btn-right{
+	margin-right: 8px;
+}
+/*NOTIFICATIONS*/
+.notif-time{
+	margin-top: 5px;
+}
+
+/*PROFILE*/
+.profile-username{
+	margin-top: 40px;
+}
+@media (max-width: 767px) {
+	.btn-right{
+		margin-right: 0px;
+	}
+	.profile-username{
+		margin-top: 0px;
+		font-size: 18px;
+	}
+}
+
+
+/*INDEX*/
+#content {
+  overflow: hidden;
+  height: 10em;
+}

@@ -1,0 +1,80 @@
+{% include'header.html' %}
+<nav class="navbar navbar-default navbar-fixed-top animate">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{url_for('indexx')}}">
+          <i class="title-icon fa fa-comments-o pull-left"></i>
+          TOSForum
+        </a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right mobile-bar">
+        <li>
+          <a href="{{url_for('indexx')}}">
+            <span class="menu-icon fa fa-home"></span>
+            Home
+          </a>
+        </li>
+        <li class="current">
+          <a href="{{url_for('notif')}}">
+            <span class="menu-icon fa fa-bell"></span> 
+            Notifications
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <span class="menu-icon fa fa-search"></span> 
+            Search
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right navbar-search" role="menu">
+            <li>
+              <div class="input-group input-group-sm">
+              <form action="{{url_for('search')}}" class="form-horizontal" method="POST">
+                <input type="text" class="form-control input-sm" name="keyword" placeholder="Search Threads" style="width:70%;">
+                <div class="input-group-btn" style="height:90%;">
+                  <button class="btn btn-success btn-md" type="submit" style="height:90%; float:right; margin-bottom:4px;">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </button>
+                </div>
+              </form>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="{{url_for('profile')}}">
+            <span class="menu-icon fa fa-user"></span> 
+            Profile
+          </a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+
+  <div class="container top-div">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+    {% for notif in notifs %}
+      {% if userId != notif[0] %}
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <img src="/static/images/{{notif[5]}}" class="thread-author-img img-circle">  
+          <b>{{notif[1]}}</b>
+          commented on your <a href="{{url_for('thread', name = notif[11])}}">thread</a>.
+          <small class="pull-right notif-time">
+            {{notif[8]}}
+          </small>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+
+    });  
+  </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+{% include'header.html' %}
+<nav class="navbar navbar-default navbar-fixed-top animate">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{url_for('indexx')}}">
+          <i class="title-icon fa fa-comments-o pull-left"></i>
+          TOSForum
+        </a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right mobile-bar">
+        <li>
+          <a href="{{url_for('indexx')}}">
+            <span class="menu-icon fa fa-home"></span>
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="{{url_for('notif')}}">
+            <span class="menu-icon fa fa-bell"></span> 
+            Notifications
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <span class="menu-icon fa fa-search"></span> 
+            Search
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right navbar-search" role="menu">
+            <li>
+              <div class="input-group input-group-sm">
+              <form action="{{url_for('search')}}" class="form-horizontal" method="POST">
+                <input type="text" class="form-control input-sm" name="keyword" placeholder="Search Threads" style="width:70%;">
+                <div class="input-group-btn" style="height:90%;">
+                  <button class="btn btn-success btn-md" type="submit" style="height:90%; float:right; margin-bottom:4px;">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </button>
+                </div>
+              </form>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="{{url_for('profile')}}">
+            <span class="menu-icon fa fa-user"></span> 
+            Profile
+          </a>
+        </li>
+      </ul>
+    </div>
+</nav>
+
+
+<div class="container top-div">
+     <div class="col-xs-12 col-md-10 col-md-offset-1" style="margin-bottom:3%;">
+     <h3>
+     Search results for : {{keyword}}</h3>
+    </div>
+  </div>
+ {% for thread in threads %}
+  <div class="container">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
+      <div class="panel panel-default thread">
+        <div class="panel-body" id="content">
+          <h3 class="thread-title">
+            {{thread[1]}}
+          </h3>
+          <pre class="text-justify" style="border-radius:0; border:0;background-color:transparent; color:black; padding:0;display:block; white-space: pre-wrap; font-family: 'Lato','Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 15px; line-height: 1.42857143; word-break:normal;"> 
+          {{thread[2]}}
+          </pre>
+        </div>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-xs-12">
+              <img src="/static/images/{{thread[10]}}" class="thread-author-img img-circle">  
+              {{thread[6]}}
+              <small>| {{thread[3]}}</small>
+              <a href= "{{url_for('thread', name = thread[0])}}" class="btn btn-success btn-right btn-small pull-right">
+                Read More
+              </a>        
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %} 
+
+
+  <script type="text/javascript">
+    $(function() {
+
+    });  
+  </script>
+</body>
+</html>

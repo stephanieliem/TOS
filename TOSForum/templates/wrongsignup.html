@@ -1,0 +1,73 @@
+{% include'header.html' %}
+<div class="container mt7">
+    <div class="col-xs-6 col-xs-offset-3">
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3 class="panel-title">Error!</h3>
+        </div>
+        <div class="panel-body">
+          {{ info }}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container mt5">
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <div class="well">
+        <div class="row">
+          <h1 class="text-center">
+            <a href="signin.html">
+              <span class="logo fa fa-comments-o"></span>
+              TOSForum
+              <small><br>Where magic happens</small>
+            </a>
+          </h1>
+        </div>
+        <div class="row mt2">
+          <form class="form-horizontal" action="{{ url_for('adduser') }}" method="post" enctype="multipart/form-data">
+            <fieldset>
+              <div class="form-group">  
+                <div class="input-group col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                  <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+                  <input type="text" class="form-control" placeholder="Email" id="postEmail" name="postEmail">
+                </div>
+              </div>
+              <div class="form-group">  
+                <div class="input-group col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                  <span class="input-group-addon glyphicon glyphicon-user"></span>
+                  <input type="text" class="form-control" placeholder="Username" id="postUsername" name="postUsername">
+                </div>
+              </div>
+              <div class="form-group">  
+                <div class="input-group col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                  <span class="input-group-addon glyphicon glyphicon-lock"></span>
+                  <input type="password" class="form-control" placeholder="Password" id="postPassword" name="postPassword">
+                </div>
+              </div>
+              <div class="form-group">  
+                <div class="input-group col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                  <span class="input-group-addon glyphicon glyphicon-picture"></span>
+                  <input type="file" class="form-control" name="file">
+                </div>
+              </div>
+              <div class="form-group">  
+                <div class="col-xs-6 col-xs-offset-6">
+                  <a href="{{url_for('signin')}}" class="btn btn-primary btn-small">Back</a>
+                  <button type="submit" class="btn btn-success btn-small">Sign Up</button>
+                </div>  
+              </div>              
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(function() {
+
+    });  
+  </script>
+</body>
+</html>
